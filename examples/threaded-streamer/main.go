@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/markuskont/datamodels"
-	"github.com/markuskont/go-sigma-rule-engine"
+	"github.com/tufosa/go-sigma-rule-engine"
 )
 
 var (

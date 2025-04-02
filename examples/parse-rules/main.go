@@ -20,7 +20,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/markuskont/go-sigma-rule-engine"
+	"github.com/tufosa/go-sigma-rule-engine"
 )
 
 type counts struct {
