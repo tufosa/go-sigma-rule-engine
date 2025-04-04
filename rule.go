@@ -2,6 +2,7 @@ package sigma
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -57,6 +58,12 @@ func (r *Rule) HasTags(tags []string) bool {
 // RuleFromYAML parses yaml data into Rule object
 func RuleFromYAML(data []byte) (r Rule, err error) {
 	err = yaml.Unmarshal(data, &r)
+	return
+}
+
+// RuleFromJSON parses yaml data into Rule object
+func RuleFromJSON(data []byte) (r Rule, err error) {
+	err = json.Unmarshal(data, &r)
 	return
 }
 
