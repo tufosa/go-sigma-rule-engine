@@ -1,7 +1,6 @@
 package sigma
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -18,7 +17,6 @@ type RuleHandle struct {
 	Rule
 
 	Path         string `json:"path"`
-	Multipart    bool   `json:"multipart"`
 	NoCollapseWS bool   `json:"noCollapseWS"`
 }
 
@@ -67,11 +65,6 @@ func RuleFromJSON(data []byte) (r Rule, err error) {
 	return
 }
 
-// IsMultipart checks if rule is multipart
-func IsMultipart(data []byte) bool {
-	return !bytes.HasPrefix(data, []byte("---")) && bytes.Contains(data, []byte("---"))
-}
-
 // NewRuleList 	reads a list of sigma rule paths and parses them to rule objects
 func NewRuleList(files []string, skip, noCollapseWS bool, tags []string) ([]RuleHandle, error) {
 	if len(files) == 0 {
@@ -106,7 +99,6 @@ loop:
 			Path:         path,
 			Rule:         r,
 			NoCollapseWS: noCollapseWS,
-			Multipart:    IsMultipart(data),
 		})
 	}
 	return rules, func() error {

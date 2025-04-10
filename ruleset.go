@@ -77,10 +77,6 @@ func RulesetFromRuleList(rules []RuleHandle) *Ruleset {
 	set := make([]*Tree, 0)
 loop:
 	for _, raw := range rules {
-		if raw.Multipart {
-			unsupp++
-			continue loop
-		}
 		tree, err := NewTree(raw)
 		if err != nil {
 			switch err.(type) {
